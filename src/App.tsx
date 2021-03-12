@@ -1,25 +1,26 @@
-import "./App.css";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-import Home from "./Containers/Home";
-import Producents from "./Containers/Producents";
-import Categorys from "./Containers/Categorys";
 import Products from "./Containers/Products";
-
-function App() {
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import * as data from "./data.json";
+import Nav from "./Containers/Nav";
+import Cart from "./Containers/Cart";
+import Product from "./Containers/Product";
+import {setItems} from "./strore/items/actions"
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setItems(data.items));
+  }, [dispatch]);
   return (
     <Router>
-      <Link to="/">Home</Link>
-      <Link to="/categorys">Categorys</Link>
-      <Link to="/producents">Producents</Link>
-      <Link to="/products">Products</Link>
+      <Nav />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/categorys" component={Categorys} />
-        <Route exact path="/producents" component={Producents} />
-        <Route exact path="/products" component={Products} />
+        <Route exact path="/" component={Products} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/product/:product_name" component={Product} />
       </Switch>
     </Router>
   );
-}
-
+};
 export default App;
