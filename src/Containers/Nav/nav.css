@@ -11,44 +11,39 @@ nav {
   font-weight: bold;
   justify-content: space-between;
   align-items: center;
-  background-color: navy;
-  color: aliceblue;
+  background-color: rgb(47, 68, 92);
+  color: rgb(255, 255, 255);
 }
 .navItem :hover {
-  background-color: aqua;
+  background-color: rgb(73, 91, 115);
 }
-.navItem :visited{
-  background-color: aqua;
-
+.holeNav {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 .textNav {
   display: flex;
   align-items: center;
   padding: 1rem;
-  margin: .7rem;
+  margin: 0.7rem;
   text-decoration: none;
+  border-radius: .5rem;
+
 }
-.nonePadding{
-    padding: 0;
+.nonePadding {
+  padding: 0;
 }
 .navItem {
-  color: aliceblue;
-
+  color: rgb(255, 255, 255);
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.navItem :hover {
-  background-color: aqua;
-}
+
 .logoImg {
   height: 3.4rem;
   margin-right: 0.2rem;
-}
-.leftItem {
-  margin-left: 35rem;
-}
-.rightItem {
-  margin-right: 35rem;
 }

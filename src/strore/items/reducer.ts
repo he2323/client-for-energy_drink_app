@@ -6,9 +6,7 @@ import {
   ItemActionTypes,
   Item,
 } from "./types";
-const INITIAL_STATE: ItemsState = {
-  items: [],
-};
+const INITIAL_STATE: ItemsState = { items: [] };
 
 const itemsReducer = (
   state = INITIAL_STATE,
