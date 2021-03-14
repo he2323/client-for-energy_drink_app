@@ -12,10 +12,16 @@ export interface ItemsState {
 export const SET_ITEMS = "SET_ITEMS";
 export const DELETE_ITEM = "DELETE_ITEM";
 export const ADD_ITEM = "ADD_ITEM";
+export const ADD_RATING = "ADD_RATING";
 
 interface SetItemsAction {
   type: typeof SET_ITEMS;
   payload: Item[];
+}
+interface AddRatingAction{
+  type: typeof ADD_RATING;
+  rating: number;
+  idOfItemToAddRating: number;
 }
 interface DeleteItemAction {
   type: typeof DELETE_ITEM;
@@ -27,4 +33,4 @@ interface AddItemAction {
   payload: Item;
   timestamp?: number;
 }
-export type ItemActionTypes = SetItemsAction | DeleteItemAction | AddItemAction;
+export type ItemActionTypes = SetItemsAction | DeleteItemAction | AddItemAction | AddRatingAction;
