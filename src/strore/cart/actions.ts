@@ -16,5 +16,6 @@ export const modifyAmount = (
   itemId: number,
   newAmount: number
 ): CartActionTypes => {
+  console.log(itemId);
   return { type: MODIFY_AMOUNT, itemId: itemId, newAmount: newAmount };
 };

@@ -1,3 +1,4 @@
+
 import {
   MODIFY_AMOUNT,
   DELETE_ITEM,
@@ -11,13 +12,17 @@ const INITIAL_STATE: CartState = { cart: [] };
 export default (state = INITIAL_STATE, action: CartActionTypes): CartState => {
   switch (action.type) {
     case MODIFY_AMOUNT:
+      console.log(action.itemId);
+      const itemToChange: CartItem = state.cart.filter(
+        (item: CartItem) => item.id === action.itemId
+      )[0]
+      console.log(itemToChange);
       return {
         cart: [
           ...state.cart.filter((item: CartItem) => item.id !== action.itemId),
           {
-            id: action.itemId,
+            ...itemToChange,
             amount: action.newAmount,
-            item: state.cart[action.itemId].item,
           },
         ],
       };
@@ -28,7 +33,7 @@ export default (state = INITIAL_STATE, action: CartActionTypes): CartState => {
         ),
       };
     case ADD_ITEM:
-      return { cart: [...state.cart, action.payload] };
+      return { cart: [...state.cart, {...action.payload, id: state.cart.length}] };
     default:
       return state;
   }

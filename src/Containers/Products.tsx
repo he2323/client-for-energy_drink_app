@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Item } from "../strore/items/types";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import {CartItem} from "../strore/cart/types"
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { addRating } from "../strore/items/actions";
-
+import { addItem } from "../strore/cart/actions";
 interface Rating {
   avgRating: number;
   integers: number;
@@ -16,6 +17,8 @@ const Products = () => {
   };
   const dispatch = useDispatch();
   const products: Item[] = useSelector((state: any) => state.items.items);
+  const cart: CartItem[]  = useSelector((state: any) => state.cart.cart)
+  const cartItems: Item[] = cart.map((cartItem: CartItem) => cartItem.item)
   products.sort(compareObjects);
   useEffect(() => {
     console.log(products);
@@ -33,6 +36,15 @@ const Products = () => {
     console.log(`new rating: ${rating}, id of item: ${id}`);
     dispatch(addRating(rating, id));
   };
+  const addItemToCart = (item: Item, amount = 1) => {
+    dispatch(
+      addItem({
+        amount: amount,
+        item: item,
+        id: products[products.length - 1].id + 1,
+      })
+    );
+  };
 
   return (
     <Flex direction="column" align="center" w="100vw" wrap="wrap">
@@ -41,6 +53,7 @@ const Products = () => {
           direction="column"
           m="1rem"
           p="3rem"
+          wrap="nowrap"
           borderWidth="3px"
           borderStyle="solid"
           borderColor=" products.borderColor"
@@ -51,8 +64,8 @@ const Products = () => {
           <Text m="0.4rem" fontWeight="bold" fontSize="1.3rem">
             {item.name}
           </Text>
-          <Text fontSize="1.1rem">${item.prize}</Text>
-          <Flex direction="row">
+          <Text fontSize="1.1rem" m="0.5rem">${item.prize}</Text>
+          <Flex direction="row" m="0.4rem">
             {possibleRatings
               .slice(0, calculateRating(item.rating).integers)
               .map((value: number) => (
@@ -76,6 +89,10 @@ const Products = () => {
             <Text m="0.2rem" mt="-0.2rem">
               {calculateRating(item.rating).avgRating}
             </Text>
+          </Flex>
+          <Flex justify="space-between" w="90%" direction="row" m="0.5rem">
+            <div />
+            {!cartItems.includes(item) ? <Button onClick={() => addItemToCart(item)}>Add To Cart</Button> : <Text>Product already in the cart!</Text>}
           </Flex>
         </Flex>
       ))}

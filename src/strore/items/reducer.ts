@@ -72,27 +72,18 @@ const itemsReducer = (
         items: [...action.payload],
       };
     case ADD_RATING:
-      console.log("add rating");
-      console.log(action.idOfItemToAddRating);
       const itemToChange: Item = state.items.filter(
         (item: Item) => item.id === action.idOfItemToAddRating
       )[0];
       console.log(itemToChange);
       return {
         items: [
-          // {
-          //   ...state.items[action.idOfItemToAddRating - 1],
-          //   rating: [
-          //     ...state.items[action.idOfItemToAddRating - 1].rating,
-          //     action.rating,
-          //   ],
-          // },
           ...state.items.filter(
             (item: Item) => item.id !== action.idOfItemToAddRating
           ),
           {
             ...itemToChange,
-            rating: [...itemToChange.rating, action.rating]
+            rating: [...itemToChange.rating, action.rating],
           },
         ],
       };
