@@ -11,6 +11,11 @@ const rootReducer = combineReducers({
   cart: cartReducer,
 });
 const colors = {
+  products: {
+    borderColor: "#f5f5f5",
+    iconMarkedColor: "#9fb024",
+    iconUnmarkedColor: "#4a5c73"
+  },
   nav: {
     buttonNormal: "#2f445c",
     buttonHover: "#4a5c73"

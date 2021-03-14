@@ -27,17 +27,16 @@
             "name": "White regal",
             "prize": 3.99,
             "rating": [
-                1,
+                5,
                 4,
                 2,
                 4,
-                1,
                 5,
                 2,
                 3,
-                2,
-                2,
-                2,
+                5,
+                5,
+                5,
                 3
             ],
             "description": "Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament Lorem ipsum dolor sit ament "
