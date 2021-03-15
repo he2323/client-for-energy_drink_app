@@ -1,15 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore, combineReducers } from "redux";
-import itemsReducer from "./strore/items/reducer";
-import cartReducer from "./strore/cart/reducer";
+import { createStore } from "redux";
+
 import App from "./App";
 import { Provider } from "react-redux";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-const rootReducer = combineReducers({
-  items: itemsReducer,
-  cart: cartReducer,
-});
+import {rootReducer} from "./strore/rootReducer"
 const colors = {
   products: {
     borderColor: "#f5f5f5",

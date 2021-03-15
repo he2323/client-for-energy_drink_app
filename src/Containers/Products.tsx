@@ -6,6 +6,7 @@ import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { addRating } from "../strore/items/actions";
 import { addItem } from "../strore/cart/actions";
+import {RootState} from "../strore/rootReducer"
 interface Rating {
   avgRating: number;
   integers: number;
@@ -15,14 +16,15 @@ const Products = () => {
     let comparison = item1.id > item2.id ? 1 : -1;
     return comparison;
   };
+
   const dispatch = useDispatch();
-  const products: Item[] = useSelector((state: any) => state.items.items);
-  const cart: CartItem[]  = useSelector((state: any) => state.cart.cart)
+
+  const products: Item[] = useSelector((state: RootState) => state.items.items);
+  const cart: CartItem[]  = useSelector((state: RootState) => state.cart.cart)
   const cartItems: Item[] = cart.map((cartItem: CartItem) => cartItem.item)
+
   products.sort(compareObjects);
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
+
   const possibleRatings: number[] = [1, 2, 3, 4, 5];
   const calculateRating = (rating: number[]): Rating => {
     const avgRating =

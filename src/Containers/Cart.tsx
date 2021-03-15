@@ -16,20 +16,20 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { CartItem } from "../strore/cart/types";
 import CartItemRep from "../components/CartItem";
-import {modifyAmount} from "../strore/cart/actions"
+import { modifyAmount } from "../strore/cart/actions";
+import { RootState } from "../strore/rootReducer";
 const Cart = () => {
   const compareObjects = (item1: CartItem, item2: CartItem) => {
-    let comparison = item1.id > item2.id ? 1 : -1;
+    const comparison = item1.id > item2.id ? 1 : -1;
     return comparison;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cart: CartItem[] = useSelector((state: any) => state.cart.cart);
+  const cart: CartItem[] = useSelector((state: RootState) => state.cart.cart);
   cart.sort(compareObjects);
-  
+
   const changeAmount = (changeToValue: number, itemId: number) => {
-    console.log(itemId);
-    dispatch(modifyAmount(itemId, changeToValue))
+    dispatch(modifyAmount(itemId, changeToValue));
   };
   useEffect(() => {
     console.log(cart);
@@ -57,6 +57,8 @@ const Cart = () => {
               <Flex direction="column" align="center">
                 {cart.map((cartItem: CartItem) => (
                   <CartItemRep
+                    key={cartItem.id}
+                    id={cartItem.id}
                     item={cartItem.item}
                     amount={cartItem.amount}
                     changeAmount={changeAmount}
