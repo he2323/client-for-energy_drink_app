@@ -18,6 +18,7 @@ import { CartItem } from "../strore/cart/types";
 import CartItemRep from "../components/CartItem";
 import { modifyAmount } from "../strore/cart/actions";
 import { RootState } from "../strore/rootReducer";
+import {Link} from "react-router-dom"
 const Cart = () => {
   const compareObjects = (item1: CartItem, item2: CartItem) => {
     const comparison = item1.id > item2.id ? 1 : -1;
@@ -67,7 +68,7 @@ const Cart = () => {
               </Flex>
             </DrawerBody>
 
-            <DrawerFooter></DrawerFooter>
+            <DrawerFooter><Link to={"/checkout"}><Button>Checkout</Button></Link></DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
